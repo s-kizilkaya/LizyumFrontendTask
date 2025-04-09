@@ -230,10 +230,11 @@ function renderAramaSonuclari(data) {
     // Kart tıklandığında modal'ı gösterir ve içeriğini dinamik olarak oluşturur
     card.addEventListener("click", () => {
       modal.classList.remove("hidden");
+      document.getElementById("footer").classList.add("hidden");
 
       // İlk modal içeriğini günceller
       modalContent.innerHTML = `
-<div class="relative bg-blue-50 m-4 p-3 rounded-lg shadow flex flex-col">
+<div class="relative bg-blue-50 m-4 mb-0 p-3 rounded-lg shadow flex flex-col">
   <div class="flex gap-3">
     <img
       src="${item.image}"
@@ -511,6 +512,7 @@ const modalCloseBtn = document.getElementById("modal-close-btn");
 // Modal kapatma butonuna tıklanıldığında modal'ı gizler
 modalCloseBtn.addEventListener("click", () => {
   modal.classList.add("hidden");
+  document.getElementById("footer").classList.remove("hidden");
 });
 
 // MesajlarData dizisi: Her bir mesaj için gerekli verilerin tutulduğu dizi

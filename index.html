@@ -182,13 +182,14 @@
       <!-- Alt navigasyon arka planı -->
       <section
         id="footer-section"
-        class="fixed bottom-0 w-full md:max-w-sm mx-auto"
+        class="fixed bottom-0 w-full xs:max-w-xs sm-max-w-sm md:max-w-sm mx-auto"
       >
         <div class="p-5 bg-blue-100"></div>
       </section>
 
       <!-- Alt navigasyon menüsü -->
       <footer
+        id="footer"
         class="fixed bottom-2 w-full bg-white shadow-inner p-3 flex justify-between rounded-xl md:max-w-sm mx-auto"
       >
         <button id="anasayfa-btn" class="text-blue-500">
@@ -218,7 +219,10 @@
       </footer>
 
       <!-- Modal: Açılır pencere yapısı -->
-      <div id="modal" class="fixed inset-0 hidden z-50 md:max-w-sm mx-auto">
+      <div
+        id="modal"
+        class="fixed inset-0 hidden z-50 max-w-sm mx-auto w-full h-full overflow-auto border"
+      >
         <div
           style="
             background-image: linear-gradient(
@@ -229,10 +233,10 @@
                 rgba(255, 255, 255, 0.2)
               ),
               url('assets/header.png');
-            background-size: contain;
+            background-size: cover;
             background-position: center;
           "
-          class="w-full h-full overflow-auto"
+          class="pb-4"
         >
           <button
             id="modal-close-btn"
@@ -241,18 +245,9 @@
             <i class="fas fa-arrow-left text-gray-600 text-xs"></i>
           </button>
           <div id="modal-content" class="mt-6"></div>
-          <div
-            id="modal-content2"
-            style="height: 75vh"
-            class="mt-4 w-full bg-gray-50"
-          ></div>
-
-          <section
-            id="footer-section2"
-            class="bottom-0 w-full md:max-w-sm mx-auto"
-          >
-            <div class="p-5 bg-blue-100"></div>
-          </section>
+        </div>
+        <div class="bg-gray-60">
+          <div id="modal-content2" class="w-full h-full bg-gray-50"></div>
         </div>
       </div>
     </div>
