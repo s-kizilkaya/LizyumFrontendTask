@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <!-- Karakter seti ve mobil uyumluluk ayarları -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lizyum Frontend Task</title>
+
+    <!-- Tailwind CSS kütüphanesi (CDN üzerinden) -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Google Fonts üzerinden Inter yazı tipi -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- FontAwesome kütüphanesi (ikonlar için) -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+  </head>
+  <body class="font-['Inter'] bg-white text-gray-800">
+    <div class="md:max-w-sm mx-auto min-h-screen border bg-gray-50">
+      <!-- Üst kısım (karşılama mesajı ve profil fotoğrafı) -->
+      <header
+        style="
+          background-image: linear-gradient(
+              to right,
+              rgba(255, 249, 249, 0.6),
+              rgba(255, 255, 255, 0.2),
+              rgba(255, 249, 249, 0.6),
+              rgba(255, 255, 255, 0.2)
+            ),
+            url('assets/header.png');
+          background-size: cover;
+          background-position: center;
+        "
+        class="p-1 bg-blue-100"
+      >
+        <!-- Başlık ve profil görseli -->
+        <div class="p-3 flex items-center justify-between">
+          <div>
+            <h3 class="text-lg font-semibold">Merhaba!</h3>
+            <p class="text-xs text-gray-500">Lizyum'a Hoşgeldiniz</p>
+          </div>
+          <!-- Profil fotoğrafı (yuvarlak çerçeve, kenarlık ve küçük boyut) -->
+          <img
+            src="assets/profile1.jpg"
+            alt="Profil"
+            class="w-12 h-12 rounded-full border-2 border-white object-cover sm:mt-2"
+          />
+        </div>
+
+        <!-- Arama çubuğu alanı -->
+        <div class="mx-3 px-2 bg-white rounded-lg flex items-center mb-2">
+          <!-- Arama simgesi -->
+          <i
+            class="fas fa-search text-gray-800 p-2 rounded-full bg-blue-100"
+          ></i>
+
+          <!-- Arama input alanı -->
+          <input
+            id="search-input"
+            type="text"
+            placeholder="Aramak İstediğiniz Hizmeti Yazın"
+            class="w-full text-xs mx-1 px-1 py-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+
+          <!-- Menü simgesi -->
+          <i
+            class="fas fa-grip-lines text-gray-800 p-2 rounded-full bg-blue-100"
+          ></i>
+        </div>
+      </header>
+
+      <!-- Senin İçin: Önerilen hizmetler -->
+      <section id="senin-icin-section" class="p-3 pb-0">
+        <!-- Başlık ve 'Tümünü Gör' bağlantısı -->
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center">
+            <h6 class="font-semibold text text-blue-600">#</h6>
+            <h6 style="margin-left: 4px" class="font-semibold text">
+              Senin İçin
+            </h6>
+          </div>
+          <h6 style="font-size: 13px" class="text-gray-600 ml-1">Tümünü Gör</h6>
+        </div>
+
+        <!-- Dinamik kartların ekleneceği alan -->
+        <div class="overflow-x-auto hide-scrollbar">
+          <div class="inline-flex flex-col gap-2">
+            <div id="senin-icin-container1" class="flex gap-3"></div>
+            <div id="senin-icin-container2" class="flex gap-3"></div>
+            <div id="senin-icin-container3" class="flex gap-3"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Öne Çıkanlar: Vitrin hizmetler -->
+      <section id="one-cikanlar-section" class="p-3 pb-0 overflow-hidden">
+        <!-- Başlık ve filtre düğmeleri -->
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center">
+            <h6 class="font-semibold text text-blue-600">#</h6>
+            <h6 style="margin-left: 4px" class="font-semibold text">
+              Öne Çıkanlar
+            </h6>
+          </div>
+
+          <!-- Bireysel / Kurumsal geçiş butonları -->
+          <div
+            style="
+              background-image: linear-gradient(
+                to right,
+                rgba(229, 238, 255, 1),
+                rgba(255, 255, 255, 1),
+                rgba(230, 239, 255, 1),
+                rgba(255, 255, 255, 1)
+              );
+              box-shadow: inset 0px 0px 2.5px 0.25px rgba(0, 0, 0, 0.2);
+            "
+            class="flex items-center justify-center rounded-lg border shadow-sm text-xs"
+          >
+            <button
+              id="btn-bireysel"
+              style="margin-top: 2px; margin-bottom: 2px"
+              class="ml-1 px-3 py-2 rounded-lg bg-white text-gray-800 shadow-sm transition"
+            >
+              Bireysel
+            </button>
+            <button
+              id="btn-kurumsal"
+              class="px-3 py-2 rounded-full text-gray-800 transition"
+            >
+              Kurumsal
+            </button>
+          </div>
+        </div>
+
+        <!-- Kartların dinamik olarak yükleneceği alan -->
+        <div
+          id="one-cikanlar-container"
+          class="flex overflow-x-auto gap-4 w-full"
+        ></div>
+      </section>
+
+      <!-- Yakındakiler: Konum tabanlı öneriler -->
+      <section id="yakindakiler-section" class="p-3 overflow-hidden">
+        <div class="flex items-center justify-start mb-2">
+          <h6 class="font-semibold text text-blue-600">#</h6>
+          <h6 style="margin-left: 4px" class="font-semibold text">
+            Yakındakiler
+          </h6>
+        </div>
+      </section>
+
+      <!-- Arama Sonuçları (başlangıçta gizli) -->
+      <section id="arama-sonuclari-section" class="p-3 hidden">
+        <!-- Arama sonuçlarının listeleneceği grid alanı -->
+        <div
+          id="arama-sonuclari-container"
+          class="grid grid-cols-1 gap-4"
+        ></div>
+      </section>
+
+      <!-- Mesajlar (başlangıçta gizli) -->
+      <section id="mesajlar-section" class="p-3 hidden">
+        <div id="mesajlar-container" class="grid grid-cols-1"></div>
+        <div id="mesajlar-container2" class="grid grid-cols-1"></div>
+      </section>
+
+      <!-- Sayfa sonu için boşluk bırakma bölümü -->
+      <section id="section" class="relative bottom-0 w-full">
+        <div class="p-12 bg-gray-50 min-h-full"></div>
+      </section>
+
+      <!-- Alt navigasyon arka planı -->
+      <section
+        id="footer-section"
+        class="fixed bottom-0 w-full md:max-w-sm mx-auto"
+      >
+        <div class="p-5 bg-blue-100"></div>
+      </section>
+
+      <!-- Alt navigasyon menüsü -->
+      <footer
+        class="fixed bottom-2 w-full bg-white shadow-inner p-3 flex justify-between rounded-xl md:max-w-sm mx-auto"
+      >
+        <button id="anasayfa-btn" class="text-blue-500">
+          <i class="fas fa-home"></i>
+          <p class="text-xs font-semibold">Anasayfa</p>
+        </button>
+
+        <button id="hizmet-btn">
+          <i class="fas fa-briefcase"></i>
+          <p class="text-xs font-semibold">Hizmet</p>
+        </button>
+
+        <button id="kategori-btn">
+          <i class="fas fa-star"></i>
+          <p class="text-xs font-semibold">Kategori</p>
+        </button>
+
+        <button id="mesajlar-btn">
+          <i class="fas fa-comment"></i>
+          <p class="text-xs font-semibold">Mesajlar</p>
+        </button>
+
+        <button id="ayarlar-btn">
+          <i class="fas fa-gear"></i>
+          <p class="text-xs font-semibold">Ayarlar</p>
+        </button>
+      </footer>
+
+      <!-- Modal: Açılır pencere yapısı -->
+      <div id="modal" class="fixed inset-0 hidden z-50 md:max-w-sm mx-auto">
+        <div
+          style="
+            background-image: linear-gradient(
+                to right,
+                rgba(255, 249, 249, 0.6),
+                rgba(255, 255, 255, 0.2),
+                rgba(255, 249, 249, 0.6),
+                rgba(255, 255, 255, 0.2)
+              ),
+              url('assets/header.png');
+            background-size: contain;
+            background-position: center;
+          "
+          class="w-full h-full overflow-auto"
+        >
+          <button
+            id="modal-close-btn"
+            class="relative rounded-full top-3 left-4 w-10 h-10 bg-blue-50 flex items-center justify-center"
+          >
+            <i class="fas fa-arrow-left text-gray-600 text-xs"></i>
+          </button>
+          <div id="modal-content" class="mt-6"></div>
+          <div
+            id="modal-content2"
+            style="height: 75vh"
+            class="mt-4 w-full bg-gray-50"
+          ></div>
+
+          <section
+            id="footer-section2"
+            class="bottom-0 w-full md:max-w-sm mx-auto"
+          >
+            <div class="p-5 bg-blue-100"></div>
+          </section>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript dosyası: Etkileşimler ve dinamik veri işlemleri -->
+    <script src="scripts/main.js"></script>
+  </body>
+</html>
