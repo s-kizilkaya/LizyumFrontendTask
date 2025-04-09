@@ -486,8 +486,27 @@ function renderAramaSonuclari(data) {
 
       if (anasayfayaDonButton) {
         anasayfayaDonButton.addEventListener("click", () => {
-          window.location.href = "/"; // Kullanıcıyı anasayfaya yönlendirir
+          document.getElementById("modal").classList.add("hidden");
+          document.getElementById("randevu").classList.add("hidden");
+          document
+            .getElementById("senin-icin-section")
+            .classList.remove("hidden");
+          document
+            .getElementById("one-cikanlar-section")
+            .classList.remove("hidden");
+          document
+            .getElementById("yakindakiler-section")
+            .classList.remove("hidden");
+          document
+            .getElementById("arama-sonuclari-section")
+            .classList.add("hidden");
+          document.getElementById("mesajlar-section").classList.add("hidden");
+          document.getElementById("section").classList.remove("hidden");
+          document.getElementById("footer-section").classList.remove("hidden");
+          document.getElementById("footer").classList.remove("hidden");
         });
+
+        document.getElementById("search-input").value = "";
       }
 
       if (popupKapatButton) {
