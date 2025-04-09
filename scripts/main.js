@@ -335,7 +335,7 @@ function renderAramaSonuclari(data) {
   id="randevu"
   class="hidden fixed inset-0 bg-gray-500 bg-opacity-50 flex items-end justify-center z-50 "
 >
-  <div class="absolute bg-white w-full md:max-w-sm p-2 overflow-auto bg-gray-100">
+  <div class="absolute bg-white w-full sm:max-w-sm md:max-w-sm p-2 overflow-auto bg-gray-100">
     <!-- Kapanış Butonu -->
     <button
       id="randevu-close-btn"
